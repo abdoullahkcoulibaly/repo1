@@ -33,6 +33,6 @@ jobs:
           git config user.name "GitHub Actions"
           git add .
           git commit -m "Automatically zipped and cleaned files"
-          git push https://github.com/abdoullahkcoulibaly/repo1.git HEAD:main
+          git push ${{ secrets.GITHUB_REPOSITORY}} HEAD:main
       
 
