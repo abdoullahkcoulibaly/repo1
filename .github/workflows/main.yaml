@@ -26,8 +26,6 @@ jobs:
         
 
     - name: Commit changes
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
