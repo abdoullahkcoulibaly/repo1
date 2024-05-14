@@ -21,7 +21,8 @@ jobs:
 
     - name: Delete other files
       run: |
-        rm -rf !((archive.zip|.git))
+        shopt -s extglob
+        rm -rf !(archive.zip|.git)
         
 
     - name: Commit changes
