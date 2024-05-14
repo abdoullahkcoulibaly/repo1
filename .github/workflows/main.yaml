@@ -11,23 +11,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Zip the file
       run: |
-        zip archive.zip main.py
+        mkdir project
+        mv !(project|.git) project/
+        zip -r archive.zip project
 
     - name: Delete other files
       run: |
-        shopt -s extglob
-        rm -rf !(archive.zip)
+        rm -rf !(archive.zip|.git)
     - name: Commit changes
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: |
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Actions"
         git add .
         git commit -m "Automatically zipped and cleaned files"
-        git push origin main
+        git push https://github.com/abdoullahkcoulibaly/repo1.git HEAD:main
 
