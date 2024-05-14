@@ -16,15 +16,18 @@ jobs:
     - name: Zip the file
       run: |
         zip archive.zip main.py
+
     - name: Delete other files
       run: |
         shopt -s extglob
         rm -rf !(archive.zip)
     - name: Commit changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
       run: |
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Actions"
         git add .
         git commit -m "Automatically zipped and cleaned files"
-        git push
+        git push origin main
 
