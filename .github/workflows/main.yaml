@@ -21,13 +21,10 @@ jobs:
 
     - name: Delete other files
       run: |
-        shopt -s extglob
         rm -rf !(archive.zip|.git)
         
 
     - name: Commit changes
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
