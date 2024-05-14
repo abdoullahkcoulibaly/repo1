@@ -23,13 +23,15 @@ jobs:
       run: |
         rm -rf *
         rm -rf .[!.]* .??*
+
     - name: Commit changes
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: |
-        git config --local user.email "actions@github.com"
-        git config --local user.name "GitHub Actions"
-        git add .
-        git commit -m "Automatically zipped and cleaned files"
-        git push https://github.com/abdoullahkcoulibaly/repo1.git HEAD:main
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add .
+          git commit -m "Automatically zipped and cleaned files"
+          git push https://github.com/abdoullahkcoulibaly/repo1.git HEAD:main
+      
 
